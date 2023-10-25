@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    /*box-sizing: border-box vc cosegue deixar a largura dos elementos sendo a largura que vc definil*/
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+div{
+    /*define que o posicionamento do elemento filho vai ser de acordo com o elemento pai,
+    neste caso, o elemento pai é o body*/
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    /*column faz com que os elementos fique posicionados de cima para baixo*/
+    flex-direction: column;
+    /*justify-content é usado para alinhar itens horizontalmente*/
+    /*flex-start alinha os itens no inicio do contêiner*/
+    justify-content: flex-start;
+    background-image: url(bg.jpg);
+    /*bacground-seze: cover faz com que a imagem cubra, neste caso, toda a div, independente do aparelho
+    podendo ser cortada no processo*/
+    background-size: cover;
+    background-position: center;
+}
+
+/*cabeçalho*/
+header{
+    position: relative;
+    /*top é usado quando usamos o position relative, ele informa a distâncio que o espaço(neste caso o Header) que tem que tá em relação a tag "maior"(neste caso a div)*/
+    top: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    /*align-itens é usado para alinhar itens verticalmente, no contexto flex-box*/
+    /*center é pra alinhar no centro, mas poderia usar flex-start para alinhar no início, neste caso, em cima*/
+    align-items: center;
+}
+
+/*Logo*/
+header .logo{
+    position: relative;
+    text-decoration: none;/*retira o sublinhado*/
+    color: #000;
+    text-transform: uppercase;/*text-transform: uppercase deixa maiúsculo*/
+    font-weight: 800;/*intensidade do texto*/
+    letter-spacing: 1px;/*Espaçamento estre as letras*/
+}
+/*menu*/
+header .menu a{
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+    border-radius: 20px;
+    /*faz uma transição para aparecer o efeito do hover*/
+    transition: 0.3s;
+    transition-property: background;
+}
+/*:last-child indica que vai mudificar todos os itens,neste caso a tag a, menos o último.*/
+header .menu a:not(:last-child){
+    margin-right: 30px;
+}
+header .menu a:hover{
+    background-color: #fff;
+}
+.conteudo{
+    max-width: 650px;
+    margin: 60px 100px; 
+}
+.conteudo .info h2{
+    color: #226a80;
+    font-size: 55px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+.conteudo .info h2 span{
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+}
+.conteudo .info p{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+.conteudo .botao-info{
+    color: #fff;
+    background-color: #226a80;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+    transition-property: background;
+}
+.conteudo .botao-info:hover{
+    background-color: #0C4f60;
+}
+.media-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.media-icons a{
+    position: relative;
+    font-size: 25px;
+    color: #111;
+    transition: 0.3s;
+    transition-property: transform;
+}
+.media-icons a:not(:last-child){
+    margin-right: 60px;
+}
+.media-icons a:hover{
+    transform: scale(1.5);
+}
+
+/*Checkbox - menu*/
+label{
+    display: none;
+}
+#check{
+    display: none;
+    z-index: 3;
+}
+
+/*Responsivo*/
+
+@media (max-width: 960px){
+    header{
+        display: flex;
+        justify-content:space-between;
+        flex-direction: row;
+    }
+    /*Esconde o menu origianal para criar um utilizando checkbox*/
+    header .menu{
+        display: none;
+    }
+    label{
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        transition-property: color;
+    }
+    label:hover{
+        color: #fff;
+    }
+    label .close-btn{
+        display: none;
+    }
+    /*#check:checked é quando o input é clicado, o #check é o nome*/
+    /*faz com que ao checkbox estar ativo, o header(menu) aparece com as novas caracteristicas que foi colocado*/
+    #check:checked ~ header .menu{
+        z-index: 2;
+        position: fixed;
+        background: rgba(114, 223, 255, 0.9);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #check:checked ~ header .menu a{
+        margin-right: 0;
+        margin-bottom: 50px;
+        letter-spacing: 2px;
+        font-weight: 700;
+    }
+    /*Faz o botão do menu sumir ao menu estar ativo, pois ele estava aparecendo atras*/
+    #check:checked ~ header label .menu-btn{
+        display: none;
+    }
+    /*Faz o botão de fechar aparecer*/
+    #check:checked ~ header label .close-btn{
+        z-index: 2;
+        display: inline;
+        position: fixed;
+    }
+
+    /*Corpo do site*/
+    .conteudo .info h2{
+        font-size: 45px;
+        line-height: 50px;
+    }
+    .conteudo .info h2 span{
+        font-size: 40px;
+        font-weight: 600;
+    }
+    .conteudo .info p{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 540px){
+    /*Corpo do site*/
+    .conteudo .info h2{
+        font-size: 35px;
+        line-height: 40px;
+    }
+    .conteudo .info h2 span{
+        font-size: 30px;
+        font-weight: 600;
+    }
+    .conteudo .info p{
+        font-size: 14px;
+    }
+}
