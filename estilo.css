@@ -105,6 +105,11 @@ header .menu a:hover{
 .conteudo .botao-info:hover{
     background-color: #0C4f60;
 }
+
+/*footer*/
+footer{
+    margin-top: auto;
+}
 .media-icons{
     display: flex;
     justify-content: center;
@@ -147,7 +152,7 @@ label{
         display: none;
     }
     label{
-        display: block;
+        display: inline;
         font-size: 25px;
         cursor: pointer;
         transition: 0.3s;
@@ -163,6 +168,7 @@ label{
     /*faz com que ao checkbox estar ativo, o header(menu) aparece com as novas caracteristicas que foi colocado*/
     #check:checked ~ header .menu{
         z-index: 2;
+        /*position fixed, deixa os itens do menu fixos, na hora do menu ser ativado*/
         position: fixed;
         background: rgba(114, 223, 255, 0.9);
         top: 0;
@@ -206,7 +212,13 @@ label{
 }
 
 @media (max-width: 540px){
+    header{
+        padding: 25px 50px;
+    }
     /*Corpo do site*/
+    .conteudo{
+        margin: 30px 50px; 
+    }
     .conteudo .info h2{
         font-size: 35px;
         line-height: 40px;
@@ -214,8 +226,5 @@ label{
     .conteudo .info h2 span{
         font-size: 30px;
         font-weight: 600;
-    }
-    .conteudo .info p{
-        font-size: 14px;
     }
 }
